@@ -16,7 +16,7 @@ g++ ./src/day1.cpp -o day1; ./day1
 ```
 2. Lua
     - part 1: `306`
-    - part 2: `in progress`
+    - part 2: `366`
 ```
 lua ./src/day2.lua
 ```
