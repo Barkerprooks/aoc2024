@@ -12,7 +12,7 @@ Will try to keep up as best as I can.
     - part 1: `1873376`
     - part 2: `18997088`
 ```
-g++ ./src/1/main.cpp -o day1; ./day1
+g++ ./src/1/main.cpp -o day1; ./day1; rm day1
 ```
 2. Lua
     - part 1: `306`
