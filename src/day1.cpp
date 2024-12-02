@@ -26,8 +26,7 @@ int main(int argc, char **argv) {
     std::sort(rs.begin(), rs.end());
 
     for (i = 0; i < ls.size(); i++) {
-        // build a map of right side values and how many times each value appears
-        // for part 2
+        // build a map of right side values and how many times each value appears for part 2
         if (counts.count(rs[i]) == 0)
             counts[rs[i]] = 1;
         else
