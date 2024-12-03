@@ -19,3 +19,8 @@ go run ./day/3/main.go
 - `165225049`
 - `108830766`
 ### Day 4: `Julia`
+```
+julia ./day/4/main.jl
+```
+- `N/A`
+- `N/A`
