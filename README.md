@@ -8,21 +8,19 @@ A different language every day.
 
 Will try to keep up as best as I can. 
 
-1. C++
+### Day 1: C++
 ```
 g++ ./src/1/main.cpp -o day1; ./day1; rm day1
 ```
 - part 1: `1873376`
 - part 2: `18997088`
-
-2. Lua
+### Day 1: Lua
 ```
 lua ./src/2/main.lua
 ```
 - part 1: `306`
 - part 2: `366`
-
-3. Go
+### Day 1: Go
 ```
 go run ./src/3/main.go
 ```
