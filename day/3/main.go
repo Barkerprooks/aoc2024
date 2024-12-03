@@ -56,11 +56,9 @@ func main() {
 		// if our current index is greater than the front of the queue's
 		// then we have passed a do or a don't. change the state before
 		// calculating
-		if len(doQueue) > 0 {
-			if indicies[0] > doQueue[0].index {
-				do = doQueue[0].state // change state
-				doQueue = doQueue[1:] // pop the front of the queue
-			}	
+		if len(doQueue) > 0 && indicies[0] > doQueue[0].index{
+			do = doQueue[0].state // change state
+			doQueue = doQueue[1:] // pop the front of the queue
 		}
 		
 		if do {
