@@ -22,7 +22,7 @@ lua ./src/2/main.lua
 ```
 3. Go
     - part 1: `165225049`
-    - part 2: `in-progress`
+    - part 2: `108830766`
 ```
 go run ./src/3/main.go
 ```
