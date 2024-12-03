@@ -1,28 +1,21 @@
 # Advent of Code 2024
-
-Hopefully this year I will complete the challenge.
-
-
-A different language every day. 
-
-
-Will try to keep up as best as I can. 
-
-### Day 1: C++
+A different language each day. 
+### Day 1: `C++`
 ```
 g++ ./day/1/main.cpp -o day1; ./day1; rm day1
 ```
-- part 1: `1873376`
-- part 2: `18997088`
-### Day 2: Lua
+- `1873376`
+- `18997088`
+### Day 2: `Lua`
 ```
 lua ./day/2/main.lua
 ```
-- part 1: `306`
-- part 2: `366`
-### Day 3: Go
+- `306`
+- `366`
+### Day 3: `Go`
 ```
 go run ./day/3/main.go
 ```
-- part 1: `165225049`
-- part 2: `108830766`
+- `165225049`
+- `108830766`
+### Day 4: `Julia`
