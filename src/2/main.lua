@@ -19,7 +19,7 @@ local part1 = 0
 local part2 = 0
 
 -- supposedly the file closes automatically at the end of this loop
-for line in io.lines('input/day2.txt') do
+for line in io.lines('./input/2/input.txt') do
     local levels = {}
 
     -- split on a regex of white spaces, just manually build the table

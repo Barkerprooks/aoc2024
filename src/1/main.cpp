@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     bool leftSide = true; // switch to toggle which token gets added to which list
     int i, token, part1 = 0, part2 = 0;
 
-    std::fstream file("input/day1.txt"); // open a handle to the input
+    std::fstream file("./input/1/input.txt"); // open a handle to the input
     while (file >> token) {
         leftSide ? ls.push_back(token) : rs.push_back(token);
         leftSide = !leftSide; // toggle left/right on each value
