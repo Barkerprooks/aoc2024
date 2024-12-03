@@ -21,8 +21,8 @@ g++ ./src/1/main.cpp -o day1; ./day1; rm day1
 lua ./src/2/main.lua
 ```
 3. Go
-    - part 1: `n/a`
-    - part 2: `n/a`
+    - part 1: `165225049`
+    - part 2: `in-progress`
 ```
 go run ./src/3/main.go
 ```
