@@ -4,23 +4,23 @@ A different language each day.
 ```
 g++ ./day/1/main.cpp -o day1; ./day1; rm day1
 ```
-- `1873376`
-- `18997088`
+1. `1873376`
+2. `18997088`
 ### Day 2: `Lua`
 ```
 lua ./day/2/main.lua
 ```
-- `306`
-- `366`
+1. `306`
+2. `366`
 ### Day 3: `Go`
 ```
 go run ./day/3/main.go
 ```
-- `165225049`
-- `108830766`
+1. `165225049`
+2. `108830766`
 ### Day 4: `Julia`
 ```
 julia ./day/4/main.jl
 ```
-- `N/A`
-- `N/A`
+1. `N/A`
+2. `N/A`
