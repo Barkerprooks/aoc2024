@@ -10,19 +10,19 @@ Will try to keep up as best as I can.
 
 ### Day 1: C++
 ```
-g++ ./src/1/main.cpp -o day1; ./day1; rm day1
+g++ ./day/1/main.cpp -o day1; ./day1; rm day1
 ```
 - part 1: `1873376`
 - part 2: `18997088`
-### Day 1: Lua
+### Day 2: Lua
 ```
-lua ./src/2/main.lua
+lua ./day/2/main.lua
 ```
 - part 1: `306`
 - part 2: `366`
-### Day 1: Go
+### Day 3: Go
 ```
-go run ./src/3/main.go
+go run ./day/3/main.go
 ```
 - part 1: `165225049`
 - part 2: `108830766`
