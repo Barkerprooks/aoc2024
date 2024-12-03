@@ -9,20 +9,22 @@ A different language every day.
 Will try to keep up as best as I can. 
 
 1. C++
-    - part 1: `1873376`
-    - part 2: `18997088`
 ```
 g++ ./src/1/main.cpp -o day1; ./day1; rm day1
 ```
+- part 1: `1873376`
+- part 2: `18997088`
+
 2. Lua
-    - part 1: `306`
-    - part 2: `366`
 ```
 lua ./src/2/main.lua
 ```
+- part 1: `306`
+- part 2: `366`
+
 3. Go
-    - part 1: `165225049`
-    - part 2: `108830766`
 ```
 go run ./src/3/main.go
 ```
+- part 1: `165225049`
+- part 2: `108830766`
