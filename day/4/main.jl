@@ -1,55 +1,63 @@
-function findword(wordsearch, wordsfound, x, y, w, h, score=0)
-    if abs(score) == 10
-        println("found word!")
+function inbounds(x, y, width, height)
+    return x > 0 && x <= width && y > 0 && y <= height
+end
+
+function findword(wordsearch, foundwords, i, scores)
+    if sort(collect(keys(scores))) == [1, 2, 3, 4] # found a word forward or backward
+        for (k, v) in scores
+            merge!(foundwords, Dict(v => k))
+        end
         return 1
     end
-
-    i = x + w * y
-    for ny in range(y - 1, y + 1)
-        for nx in range(x - 1, x + 1)
-            ni = nx + w * ny
-            xbounds = nx > 0 && nx <= w
-            ybounds = ny > 0 && ny <= h
-            isnotfound = get!(wordsfound, ni, 0) == 0
-            if ni != i && xbounds && ybounds && isnotfound
-                v = wordsearch[ny][nx]
-                matchingdirection = (v > 0 && score > 0) || (v < 0 && score < 0) 
-                if abs(wordsearch[y][x] - v) == 1 && (score == 0 || matchingdirection)
-                    direction = wordsearch[y][x] - v > 0 ? 1 : -1
-                    merge!(wordsfound, Dict(ni => v))
-                    return findword(wordsearch, wordsfound, nx, ny, w, h, score + direction)
+    
+    y, x = div(i - 1, width) + 1, ((i - 1) % width) + 1
+    for iy in range(y - 1, y + 1)
+        for ix in range(x - 1, x + 1)
+            if !(ix == x && iy == y) && inbounds(ix, iy, width, height)
+                ii = ((ix - 1) + width * (iy - 1)) + 1
+                v = wordsearch[i] - wordsearch[ii]
+                if abs(v) == 1 && !get(foundwords, ii, 0) == 0
+                    newscores = Dict(wordsearch[ii] => ii)
+                    merge!(newscores, scores)
+                    return findword(wordsearch, foundwords, i, newscores)
                 end
             end
         end
     end
 
-    println("bruh moment")
     return 0
 end
 
 # the idea here is to convert chars to ints and
 # check the distance between adjacent indicies is 1
 xmas = Dict('X' => 1, 'M' => 2, 'A' => 3, 'S' => 4)
-wordsearch = Vector{Int8}[] # start with nothing (we can push >:D)
-wordsfound = Dict() # (index; score) at that index
+foundwords = Dict() # { index: score }
+wordsearch = Int8[]
+scores = Dict()
+
+height = 0
+width = 0
 
 part1 = 0
 
-for (i, line) in enumerate(eachline("./day/4/test.txt"))
-    push!(wordsearch, Int8[])
-    for char in line
-        push!(wordsearch[i], xmas[char])
+for line in eachline("./day/4/test.txt")
+    global width, height
+    
+    if width == 0 # use the first line for the width
+        width = length(line) 
     end
+
+    for char in line
+        push!(wordsearch, xmas[char])
+    end
+
+    height += 1
 end
 
-# go in chunks
-h = length(wordsearch)
-w = length(wordsearch[1])
-for y in range(1, h)
-    for x in range(1, w)
-        global part1
-        part1 += findword(wordsearch, wordsfound, x, y, w, h)
-    end
+for i in range(1, width * height)
+    global part1
+    
+    part1 += findword(wordsearch, foundwords, i, scores)
 end
 
 println(part1)
