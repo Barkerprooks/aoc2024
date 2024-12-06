@@ -28,5 +28,11 @@ julia ./day/4/main.jl
 ```
 dotnet run --project ./day/5
 ```
-1. `N/A`
-2. `N/A`
+1. `in progress`
+2. `in progress`
+### Day 6: `PHP`
+```
+php ./day/6/main.php
+```
+1. `in progress`
+2. `in progress`
