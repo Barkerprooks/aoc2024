@@ -26,7 +26,7 @@ julia ./day/4/main.jl
 2. `in progress`
 ### Day 5: `.NET`
 ```
-dotnet ./day/5/
+dotnet run --project ./day/5
 ```
 1. `N/A`
 2. `N/A`
