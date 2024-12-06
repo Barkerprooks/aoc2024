@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ckw5e+jPHZbZk/Zi4x8O5Xt4bx6qnuq3l2rsYngbPKcGMzUteF2P+3yePiVLgER1ZTeqwJnI+EKw8/Ws8SfD7w==",
+  "success": true,
+  "projectFilePath": "/home/parker/aoc2024/day/5/5.csproj",
+  "expectedPackageFiles": [
+    "/home/parker/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}
