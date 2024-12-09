@@ -36,3 +36,7 @@ php ./day/6/main.php
 ```
 1. `in progress`
 2. `in progress`
+### Day 7: `C`
+```
+gcc ./day/7/main.c -o day7; ./day7; rm day7
+```
