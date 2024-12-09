@@ -14,11 +14,9 @@ end
 # the idea here is to convert chars to ints and
 # check the distance between adjacent indicies is 1
 xmas = Dict('X' => 1, 'M' => 2, 'A' => 3, 'S' => 4)
-foundwords = Dict() # { index: score } words that have been found
-wordbuffer = Dict() # { score: index } words we are currently looking at
 
 # multidim vector of scores
-scores = map((line) -> map((letter) -> xmas[letter], collect(line)), eachline("./day/4/test.txt"))
+scores = map((line) -> map((letter) -> xmas[letter], collect(line)), eachline("./day/4/input.txt"))
 
 # get the width and height of the matrix
 # use the first row as a basis for the width
@@ -37,6 +35,26 @@ end
 for x in 1:width
     global part1
     part1 += search(wordsearch[x, :])
+end
+
+rows = (width * height) - 1
+nesw, nwse = [Vector{Int8}(undef, 0) for _ in 1:rows], [Vector{Int8}(undef, 0) for _ in 1:rows]
+
+for y in 1:height
+    for x in 1:width
+        push!(nesw[(y + x) - 1], wordsearch[x, y])
+        push!(nwse[(y - x) + height], wordsearch[x, y])
+    end
+end
+
+for diagonal in nesw
+    global part1
+    part1 += search(diagonal)
+end
+
+for diagonal in nwse
+    global part1
+    part1 += search(diagonal)
 end
 
 println(part1) # not done yet
