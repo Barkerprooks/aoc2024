@@ -23,7 +23,7 @@ go run ./day/3/main.go
 julia ./day/4/main.jl
 ```
 1. `2562`
-2. `in progress`
+2. `1902`
 ### Day 5: `.NET`
 ```
 dotnet run --project ./day/5
