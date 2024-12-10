@@ -42,9 +42,15 @@ gcc ./day/7/main.c -o day7; ./day7; rm day7
 ```
 1. `in progress`
 2. `in progress`
-### Day 8: `Common Lisp`
+### Day 8: `Lisp`
 ```
-clisp ./day/8/main.cl
+sbcl --script ./day/8/main.cl
+```
+1. `in progress`
+2. `in progress`
+### Day 9: `Python`
+```
+python3 ./day/9/main.py
 ```
 1. `in progress`
 2. `in progress`
