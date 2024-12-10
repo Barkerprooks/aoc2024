@@ -1,7 +1,7 @@
-﻿string seperator = Environment.NewLine + Environment.NewLine; // blank line
-string[] sections = File.ReadAllText("./day/5/input.txt").Split(seperator);
+﻿Dictionary<string, List<string>> rules = [];
 
-Dictionary<string, List<string>> rules = [];
+string[] sections = File.ReadAllText("./day/5/input.txt").Split(Environment.NewLine + Environment.NewLine);
+
 int part1 = 0;
 
 using (StringReader reader = new(sections[0])) {
@@ -26,24 +26,18 @@ using (StringReader reader = new(sections[1])) {
             if (!validLine)
                 break;
             
-            foreach (string notAllowed in rules[pages[i]]) {
-                if (pages[i..(pages.Length - 1)].Contains(notAllowed)) {
-                    Console.WriteLine($"page: {pages[i]}, not allowed: {notAllowed}");
-                    validLine = false;
+            if (rules.ContainsKey(pages[i])) {
+                foreach (string notAllowed in rules[pages[i]]) {
+                    if (pages[0..i].Contains(notAllowed))
+                        validLine = false;
                 }
             }
         }
 
-        foreach (string page in pages) {
-            Console.Write($"{page} ");
-        }
-        Console.WriteLine();
-
         if (validLine) {
-            Console.WriteLine(line);
             part1 += Int32.Parse(pages[pages.Length / 2]);
         }
     }
 }
 
-Console.WriteLine(part1);
+Console.WriteLine($"part 1: {part1}");
