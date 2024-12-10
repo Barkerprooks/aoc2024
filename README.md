@@ -24,12 +24,12 @@ julia ./day/4/main.jl
 ```
 1. `2562`
 2. `1902`
-### Day 5: `.NET`
+### Day 5: `C#`
 ```
 dotnet run --project ./day/5
 ```
-1. `in progress`
-2. `in progress`
+1. `4281`
+2. `5466`
 ### Day 6: `PHP`
 ```
 php ./day/6/main.php
@@ -40,3 +40,11 @@ php ./day/6/main.php
 ```
 gcc ./day/7/main.c -o day7; ./day7; rm day7
 ```
+1. `in progress`
+2. `in progress`
+### Day 8: `Common Lisp`
+```
+clisp ./day/8/main.cl
+```
+1. `in progress`
+2. `in progress`
