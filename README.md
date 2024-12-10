@@ -34,7 +34,7 @@ dotnet run --project ./day/5
 ```
 php ./day/6/main.php
 ```
-1. `in progress`
+1. `5199`
 2. `in progress`
 ### Day 7: `C`
 ```

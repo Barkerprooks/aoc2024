@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/parker/Desktop/aoc2024/day/5/5.csproj": {}
+    "/home/parker/aoc2024/day/5/5.csproj": {}
   },
   "projects": {
-    "/home/parker/Desktop/aoc2024/day/5/5.csproj": {
+    "/home/parker/aoc2024/day/5/5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/parker/Desktop/aoc2024/day/5/5.csproj",
+        "projectUniqueName": "/home/parker/aoc2024/day/5/5.csproj",
         "projectName": "5",
-        "projectPath": "/home/parker/Desktop/aoc2024/day/5/5.csproj",
+        "projectPath": "/home/parker/aoc2024/day/5/5.csproj",
         "packagesPath": "/home/parker/.nuget/packages/",
-        "outputPath": "/home/parker/Desktop/aoc2024/day/5/obj/",
+        "outputPath": "/home/parker/aoc2024/day/5/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/parker/.nuget/NuGet/NuGet.Config"
