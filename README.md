@@ -24,7 +24,7 @@ julia ./day/4/main.jl
 ```
 1. `2562`
 2. `1902`
-### Day 5: `.NET`
+### Day 5: `C#`
 ```
 dotnet run --project ./day/5
 ```
