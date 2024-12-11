@@ -62,3 +62,9 @@ runghc ./day/10/main.hs
 ```
 1. `in progress`
 2. `in progress`
+### 11: `Ruby`
+```
+ruby ./day/11/main.rb
+```
+1. `in progress`
+2. `in progress`
