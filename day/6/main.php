@@ -34,7 +34,6 @@
                 if (!($this->visited[$valuestr] ?? false)) {
                     return $this->cycle($value);
                 } else if ($this->stack[$valuestr] ?? false) {
-                    $this->stack[$keystr] = false;
                     return true;
                 }
             }
