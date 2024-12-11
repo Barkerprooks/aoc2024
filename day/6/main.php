@@ -1,64 +1,96 @@
 <?php
-    class Vec2 { 
-        private $direction = [0, 1, 0, -1];
-        private $memory = []; // detect a cycle of 4, memory of 8
+    function edgestr($key) { return $key[0].":".$key[1]; }
 
-        public $x, $y, $dx = 0, $dy = 3; 
+    class Graph {
+        private $data = [];
 
-        public function reset() {
-            $this->dx = 0;
-            $this->dy = 3;
-            $this->memory = [];
+        public function edges($key) { return $this->data[$key[0].":".$key[1]] ?? []; }
+
+        public function push_edge($key, $value) {
+            $keystr = edgestr($key);
+            if (array_key_exists($keystr, $this->data)) {
+                if (!in_array($value, $this->data[$keystr]))
+                    array_push($this->data[$keystr], $value);
+            } else
+                $this->data[$keystr] = [ $value ];
         }
+    }
 
-        public function cycle_detected() {
-            // if we hit the same 4 corners twice, its a cycle
-            if (count($this->memory) == 8) {
-                $a = array_slice($this->memory, 0, 4);
-                $b = array_slice($this->memory, 4, 8);
+    class Gaurd {
+        private $graph, $memory, $origin, $position, $stack, $visited;
+        private $direction = [0, 1, 0, -1];
+        private $velocity = [0, 3];
 
-                echo "a: ";
-                foreach ($a as $pair)
-                    echo "(" . $pair[0] . ", " . $pair[1] . "), ";
-                echo PHP_EOL;
+        public $cycle_detected = false;
 
-                echo "b: ";
-                foreach ($b as $pair)
-                    echo "(" . $pair[0] . ", " . $pair[1] . "), ";
-                echo PHP_EOL.PHP_EOL;
+        private function cycle($key) {
+            $keystr = edgestr($key);
 
-                if ($a == $b)
+            $this->visited[$keystr] = true;
+            $this->stack[$keystr] = true;
+
+            foreach ($this->graph->edges($key) as $value) {
+                $valuestr = edgestr($value);
+                if (!($this->visited[$valuestr] ?? false)) {
+                    return $this->cycle($value);
+                } else if ($this->stack[$valuestr] ?? false) {
+                    $this->stack[$keystr] = false;
                     return true;
+                }
             }
+
+            $this->stack[$keystr] = false;
 
             return false;
         }
 
+        public function __construct($x, $y) {
+            $this->position = [$x, $y];
+            $this->origin = [$x, $y];
+            $this->memory = [$x, $y];
+            $this->graph = new Graph();
+        }
+
+        public function reset() {
+            $this->velocity = [0, 3];
+            $this->position = $this->origin;
+            $this->memory = $this->origin;
+            $this->graph = new Graph();
+        }
+
+        public function detect_cycle() {
+            $this->visited = [];
+            $this->stack = [];
+
+            $this->cycle_detected = $this->cycle($this->position);
+        }
+
         public function rotate() {
-            $this->dx = ($this->dx + 1) % 4;
-            $this->dy = ($this->dy + 1) % 4;
-            array_push($this->memory, [$this->x, $this->y]);
-            if (count($this->memory) == 9)
-                array_shift($this->memory);
+            $this->graph->push_edge($this->memory, $this->position); // add edge to graph
+            if ($this->memory != $this->position) // account for double rotations
+                $this->detect_cycle(); // in all honesty this maybe should not have passed
+                                       // because of triple rotations, but... we'll take it
+
+            $this->memory = $this->position; // remember the last position
+            $this->velocity[0] = ($this->velocity[0] + 1) % 4;
+            $this->velocity[1] = ($this->velocity[1] + 1) % 4;
         }
 
         public function move() {
-            $this->x += $this->direction[$this->dx];
-            $this->y += $this->direction[$this->dy];
+            $this->position[0] += $this->direction[$this->velocity[0]];
+            $this->position[1] += $this->direction[$this->velocity[1]];
         }
 
-        public function get_next_x() {
-            return $this->x + $this->direction[$this->dx];
-        }
+        public function next_x() { return $this->position[0] + $this->direction[$this->velocity[0]]; }
+        public function next_y() { return $this->position[1] + $this->direction[$this->velocity[1]]; }
 
-        public function get_next_y() {
-            return $this->y + $this->direction[$this->dy];
-        }
+        public function x() { return $this->position[0]; } // wish I could make these arrow functions :/
+        public function y() { return $this->position[1]; }
     }
     
-    function next_step(&$lines, $gaurd, $width, $height) {        
-        $x = $gaurd->get_next_x();
-        $y = $gaurd->get_next_y();
+    function next_step($lines, $gaurd, $width, $height) {        
+        $x = $gaurd->next_x();
+        $y = $gaurd->next_y();
 
         if ($x >= $width || $x < 0 || $y >= $height || $y < 0)
             return false; // end the program, gaurd is out
@@ -71,64 +103,60 @@
         return true;
     }
 
-    $input = trim(file_get_contents("./day/6/test.txt"));
+    function mark_step(&$lines, $gaurd) { $lines[$gaurd->y()][$gaurd->x()] = 'X'; }
+
+    $input = trim(file_get_contents("./day/6/input.txt"));
     $lines = explode(PHP_EOL, $input);
-    $gaurd = new Vec2();
+    $gaurd = NULL;
 
     $height = count($lines);
     $width = strlen($lines[0]);
 
     $check = [];
-    $part2 = 0;
 
     foreach ($lines as $y => $line) {
         foreach (str_split($line) as $x => $char) {
             if ( $char === '^' ) {
-                $origin = [$x, $y];
-                $lines[$y][$x] = 'X';
-                $gaurd->x = $x;
-                $gaurd->y = $y;
-            } else if ($char !== '#')
+                $gaurd = new Gaurd($x, $y);
+                mark_step($lines, $gaurd);
+            } else if ($char === '.') {
                 array_push($check, [$x, $y]);
+            }
         }
     }
 
+    if ($gaurd === NULL) {
+        echo "could not find gaurd" . PHP_EOL;   
+        die();
+    }
+
     while (next_step($lines, $gaurd, $width, $height))
-        $lines[$gaurd->y][$gaurd->x] = 'X';
+        mark_step($lines, $gaurd);
 
     $part1 = substr_count(implode("", $lines), "X");
+    $part2 = 0;
 
-
-
-    foreach ($check as $pair) {
-
-        for ($y = 0; $y < $height; $y++)
-            $lines[$y] = str_replace("X", ".", $lines[$y]);
-
+    foreach ($check as $pair) { // checking each cell... this takes FOREVER
         $x = $pair[0];
         $y = $pair[1];
-        $gaurd->x = $origin[0];
-        $gaurd->y = $origin[1];
+
         $gaurd->reset();
 
         $tmp = $lines[$y][$x];
         $lines[$y][$x] = '#';
 
         while (next_step($lines, $gaurd, $width, $height)) {
-            $lines[$gaurd->y][$gaurd->x] = 'X';
-            if ($gaurd->cycle_detected())
+            if ($gaurd->cycle_detected) {
+                $gaurd->cycle_detected = false;
+                $part2 += 1;
                 break;
-            foreach ($lines as $line) {
-                foreach (str_split($line) as $char) {
-                    echo $char;
-                }
-                echo PHP_EOL;
             }
-            echo PHP_EOL;
         }
 
         $lines[$y][$x] = $tmp;
     }
 
+    // still right tho...
+    echo "part 1: " . $part1 . PHP_EOL;
     echo "part 2: " . $part2 . PHP_EOL;
 ?>
