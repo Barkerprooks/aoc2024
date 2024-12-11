@@ -46,7 +46,7 @@ gcc ./day/7/main.c -o day7; ./day7; rm day7
 2. `in progress`
 ### 8: `Lisp`
 ```
-sbcl --script ./day/8/main.cl
+sbcl --script ./day/8/main.lisp
 ```
 1. `in progress`
 2. `in progress`
