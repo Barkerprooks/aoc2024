@@ -30,7 +30,7 @@ case $1 in
     6)
         php ./day/6/main.php;;
     7)
-        gcc ./day/7/main.c -o day7; ./day7; rm day7;;
+        gcc ./day/7/main.c -o day7 -lm; ./day7; rm day7;;
     8)
         sbcl --script ./day/8/main.lisp;;
     9)  

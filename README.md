@@ -1,7 +1,14 @@
 # Advent of Code 2024
 A different language each day. 
 ## Days
-If you have the compiler/interpreter in your `$PATH` you can run the source code using the following commands.
+If you have the compiler/interpreter in your `$PATH` you can run the source code using the following commands. 
+
+You can also use the script `run-day.sh` to run a specific day
+```
+# example: this would run day 3
+./run-day.sh 3
+```
+
 ### 1: `C++`
 ```
 g++ ./day/1/main.cpp -o day1; ./day1; rm day1
