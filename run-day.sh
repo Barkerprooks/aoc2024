@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 if [ $# -ne 1 ]; then
     echo "usage: $0 <day #>"
     exit 0
