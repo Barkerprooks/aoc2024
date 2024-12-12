@@ -50,7 +50,7 @@ part 2: 1915
 ```
 ### 7: `C`
 ```
-> gcc ./day/7/main.c -o day7; ./day7; rm day7
+> gcc ./day/7/main.c -o day7 -lm; ./day7; rm day7
 part 1: 2314935962622
 ```
 ### 8: `Lisp`
