@@ -49,7 +49,7 @@ php ./day/6/main.php
 ```
 gcc ./day/7/main.c -o day7; ./day7; rm day7
 ```
-1. `in progress`
+1. `2314935962622`
 2. `in progress`
 ### 8: `Lisp`
 ```
