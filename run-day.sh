@@ -41,6 +41,8 @@ case $1 in
         runghc ./day/10/main.hs;;
     11)
         ruby ./day/11/main.rb;;
+    12)
+        java ./day/12/main.java;;
     *)
         echo "command for day $1 not set up";;
 esac

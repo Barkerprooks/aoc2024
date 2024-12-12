@@ -83,3 +83,7 @@ part 1: 2314935962622
 ```
 > ruby ./day/11/main.rb
 ```
+### 12: `Java`
+```
+java ./day/12/Main.java
+```
