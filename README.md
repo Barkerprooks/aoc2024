@@ -66,6 +66,7 @@ gcc ./day/7/main.c -o day7 -lm; ./day7; rm day7
 ```
 ```
 part 1: 2314935962622
+part 2: 401477450831495
 ```
 ### 8: `Python`
 ```
