@@ -34,9 +34,9 @@ case $1 in
     7)
         gcc ./day/7/main.c -o day7 -lm; ./day7; rm day7;;
     8)
-        sbcl --script ./day/8/main.lisp;;
+        python3 ./day/8/main.py;;
     9)  
-        python3 ./day/9/main.py;;
+        sbcl --script ./day/9/main.lisp;;
     10)
         runghc ./day/10/main.hs;;
     11)

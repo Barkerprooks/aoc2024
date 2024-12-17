@@ -67,13 +67,13 @@ gcc ./day/7/main.c -o day7 -lm; ./day7; rm day7
 ```
 part 1: 2314935962622
 ```
-### 8: `Lisp`
+### 8: `Python`
 ```
-sbcl --script ./day/8/main.lisp
+python3 ./day/8/main.py
 ```
-### 9: `Python`
+### 9: `Lisp`
 ```
-python3 ./day/9/main.py
+sbcl --script ./day/9/main.lisp
 ```
 ### 10: `Haskell`
 ```
