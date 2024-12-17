@@ -12,6 +12,9 @@ chmod +x ./run-day.sh
 ./run-day.sh 3
 ```
 
+#### Languages so far
+C++, Lua, Go, Julia, C#, PHP, C, Python, Lisp, Haskell, Ruby, Java
+
 ### 1: `C++`
 ```
 g++ ./day/1/main.cpp -o day1; ./day1; rm day1
