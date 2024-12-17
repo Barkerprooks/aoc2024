@@ -77,6 +77,7 @@ python3 ./day/8/main.py
 ```
 ```
 part 1: 256
+part 2: 1005
 ```
 ### 9: `Lisp`
 ```
