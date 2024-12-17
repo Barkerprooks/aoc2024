@@ -71,6 +71,9 @@ part 1: 2314935962622
 ```
 python3 ./day/8/main.py
 ```
+```
+part 1: 256
+```
 ### 9: `Lisp`
 ```
 sbcl --script ./day/9/main.lisp
