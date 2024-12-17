@@ -69,19 +69,19 @@ part 1: 2314935962622
 ```
 ### 8: `Lisp`
 ```
-> sbcl --script ./day/8/main.lisp
+sbcl --script ./day/8/main.lisp
 ```
 ### 9: `Python`
 ```
-> python3 ./day/9/main.py
+python3 ./day/9/main.py
 ```
 ### 10: `Haskell`
 ```
-> runghc ./day/10/main.hs
+runghc ./day/10/main.hs
 ```
 ### 11: `Ruby`
 ```
-> ruby ./day/11/main.rb
+ruby ./day/11/main.rb
 ```
 ### 12: `Java`
 ```
