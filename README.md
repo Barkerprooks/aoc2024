@@ -5,7 +5,6 @@ Assuming you have the compiler/interpreter in your `$PATH`, you can run the sour
 
 You can also use the script `run-day.sh` to run a specific day on UNIX machines. 
 
-*NOTE: as of now this has only been tested in Arch Linux*
 
 ```
 # mark the script as executable
@@ -15,6 +14,7 @@ chmod +x ./run-day.sh
 ./run-day.sh 3
 ```
 
+**NOTE**: *as of now this has only been tested in Arch Linux*
 ## Languages
 C++, Lua, Go, Julia, C#, PHP, C, Python, Common Lisp, Haskell, Ruby, Java, Rust, Swift,
 Bash, JavaScript, R, F#
