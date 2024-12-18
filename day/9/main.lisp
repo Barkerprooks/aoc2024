@@ -68,6 +68,24 @@
 
 ; part 2 functions
 
+(defun find-left-space (file-entries n)
+    ; starts from the left and finds the first free entry that has enough space
+    (loop :for file-entry :across file-entries
+        :if (and (string= (file-entry-id file-entry) ".") (>= (file-entry-size file-entry) n)) 
+            return (file-entry-offset file-entry)
+        :finally (return 0)))
+
+(defun swap-left-space (file-entries a b)
+    ; this should be taking an empty space as the left side
+    ; and a regular id as the right side.
+    
+    ; right side size stays the same
+    ; if the left size is larger than the right side:
+    ;   add new empty file-entry w left - right size
+    ; left size gets set to right side
+    ; swap indicies
+    ())
+
 (defun optimize-file-entries (file-entries)
     ; the idea behind this is to:
     ;  1st - go backwards through the entries, 
@@ -79,4 +97,7 @@
     )
 
 (defparameter *file-entries* (load-compressed "./day/9/test.txt"))
-(format t "part 1: ~a~%" (optimize-file-map (dump-file-entries *file-entries*)))
+
+(format t "~a~%" (find-left-space *file-entries* 2))
+
+; (format t "part 1: ~a~%" (optimize-file-map (dump-file-entries *file-entries*)))

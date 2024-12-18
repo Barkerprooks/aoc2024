@@ -19,10 +19,10 @@ Bash, JavaScript, R, F#
 ### 1: `C++`
 ```
 g++ ./day/1/main.cpp -o ./day/1/day1; ./day/1/day1
-
-part 1: 1873376
-part 2: 18997088
 ```
+1. 1873376
+2. 18997088
+
 ### 2: `Lua`
 ```
 lua ./day/2/main.lua
