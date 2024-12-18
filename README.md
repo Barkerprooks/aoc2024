@@ -24,14 +24,12 @@ g++ ./day/1/main.cpp -o ./day/1/day1; ./day/1/day1
 ```
 1. 1873376
 2. 18997088
-
 ### 2: Lua
 ```
 lua ./day/2/main.lua
 ```
 1. 306
 2. 366
-
 ### 3: Go
 ```
 go run ./day/3/main.go
@@ -44,40 +42,36 @@ julia ./day/4/main.jl
 ```
 1. 2562
 2. 1902
-### 5: `C#`
+### 5: C#
 ```
 dotnet run --project ./day/5
-
-part 1: 4281
-part 2: 5466
 ```
+1. 4281
+2. 5466
 ### 6: `PHP`
 ```
 php ./day/6/main.php
-
-part 1: 5199
-part 2: 1915
 ```
-### 7: `C`
+1. 5199
+2. 1915
+### 7: C
 ```
 gcc ./day/7/main.c -o ./day/7/day7 -lm; ./day/7/day7
-
-part 1: 2314935962622
-part 2: 401477450831495
 ```
+1. 2314935962622
+2. 401477450831495
 ### 8: `Python`
 ```
 python3 ./day/8/main.py
-
-part 1: 256
-part 2: 1005
 ```
+1. 256
+2. 1005
 ### 9: `Common Lisp`
 ```
 sbcl --script ./day/9/main.lisp
-
-part 1: 6399153661894
 ```
+1. 6399153661894
+2. -
 ### 10: `Haskell`
 ```
 runghc ./day/10/main.hs
