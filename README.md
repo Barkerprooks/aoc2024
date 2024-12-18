@@ -12,8 +12,9 @@ chmod +x ./run-day.sh
 ./run-day.sh 3
 ```
 
-#### Languages so far
-C++, Lua, Go, Julia, C#, PHP, C, Python, Common Lisp, Haskell, Ruby, Java, 
+#### Languages
+C++, Lua, Go, Julia, C#, PHP, C, Python, Common Lisp, Haskell, Ruby, Java, Rust, Swift,
+Bash, JavaScript, R, F#
 
 ### 1: `C++`
 ```
