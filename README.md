@@ -1,10 +1,11 @@
 # Advent of Code 2024
 Trying out a different language each day. 
 
-## Days
 Assuming you have the compiler/interpreter in your `$PATH`, you can run the source code using any of the commands below.
 
-You can also use the script `run-day.sh` to run a specific day.
+You can also use the script `run-day.sh` to run a specific day on UNIX machines. 
+
+<small>NOTE: as of now this has only been tested in Arch Linux</small>
 
 ```
 # mark the script as executable
@@ -14,10 +15,9 @@ chmod +x ./run-day.sh
 ./run-day.sh 3
 ```
 
-##### Languages
+## Languages
 C++, Lua, Go, Julia, C#, PHP, C, Python, Common Lisp, Haskell, Ruby, Java, Rust, Swift,
 Bash, JavaScript, R, F#
-
 ### 1: C++
 ```
 g++ ./day/1/main.cpp -o ./day/1/day1; ./day/1/day1
