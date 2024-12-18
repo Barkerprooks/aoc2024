@@ -48,7 +48,7 @@ dotnet run --project ./day/5
 ```
 1. 4281
 2. 5466
-### 6: `PHP`
+### 6: PHP
 ```
 php ./day/6/main.php
 ```
@@ -60,51 +60,51 @@ gcc ./day/7/main.c -o ./day/7/day7 -lm; ./day/7/day7
 ```
 1. 2314935962622
 2. 401477450831495
-### 8: `Python`
+### 8: Python
 ```
 python3 ./day/8/main.py
 ```
 1. 256
 2. 1005
-### 9: `Common Lisp`
+### 9: Common Lisp
 ```
 sbcl --script ./day/9/main.lisp
 ```
 1. 6399153661894
 2. ...
-### 10: `Haskell`
+### 10: Haskell
 ```
 runghc ./day/10/main.hs
 ```
-### 11: `Ruby`
+### 11: Ruby
 ```
 ruby ./day/11/main.rb
 ```
-### 12: `Java`
+### 12: Java
 ```
 java ./day/12/main.java
 ```
-### 13: `Rust`
+### 13: Rust
 ```
 rustc ./day/13/main.rs -o ./day/13/day13; ./day/13/day13
 ```
-### 14. `Swift`
+### 14. Swift
 ```
 swift ./day/14/main.swift
 ```
-### 15. `Bash`
+### 15. Bash
 ```
 bash ./day/15/main.bash
 ```
-### 16. `JavaScript`
+### 16. JavaScript
 ```
 node ./day/16/main.js
 ```
-### 17. `R`
+### 17. R
 ```
 R -s -f ./day/17/main.r
 ```
-### 18. `F#`
+### 18. F#
 ```
 dotnet run --project ./day/18
 ```
