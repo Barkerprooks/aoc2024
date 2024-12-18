@@ -13,11 +13,11 @@ chmod +x ./run-day.sh
 ```
 
 #### Languages so far
-C++, Lua, Go, Julia, C#, PHP, C, Python, Lisp, Haskell, Ruby, Java
+C++, Lua, Go, Julia, C#, PHP, C, Python, Common Lisp, Haskell, Ruby, Java, 
 
 ### 1: `C++`
 ```
-g++ ./day/1/main.cpp -o day1; ./day1; rm day1
+g++ ./day/1/main.cpp -o ./day/1/day1; ./day/1/day1
 
 part 1: 1873376
 part 2: 18997088
@@ -59,7 +59,7 @@ part 2: 1915
 ```
 ### 7: `C`
 ```
-gcc ./day/7/main.c -o day7 -lm; ./day7; rm day7
+gcc ./day/7/main.c -o ./day/7/day7 -lm; ./day/7/day7
 
 part 1: 2314935962622
 part 2: 401477450831495
@@ -71,7 +71,7 @@ python3 ./day/8/main.py
 part 1: 256
 part 2: 1005
 ```
-### 9: `Lisp`
+### 9: `Common Lisp`
 ```
 sbcl --script ./day/9/main.lisp
 
@@ -91,7 +91,7 @@ java ./day/12/main.java
 ```
 ### 13: `Rust`
 ```
-rustc ./day/13/main.rs; ./day13; rm day13
+rustc ./day/13/main.rs -o ./day/13/day13; ./day/13/day13
 ```
 ### 14. `Swift`
 ```
@@ -108,4 +108,8 @@ node ./day/16/main.js
 ### 17. `R`
 ```
 R -s -f ./day/17/main.r
+```
+### 18. `F#`
+```
+dotnet run --project ./day/18
 ```
