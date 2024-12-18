@@ -1,9 +1,11 @@
 # Advent of Code 2024
-A different language each day. 
+Trying out a different language each day. 
+
 ## Days
 Assuming you have the compiler/interpreter in your `$PATH`, you can run the source code using any of the commands below.
 
 You can also use the script `run-day.sh` to run a specific day.
+
 ```
 # mark the script as executable
 chmod +x ./run-day.sh
@@ -12,38 +14,36 @@ chmod +x ./run-day.sh
 ./run-day.sh 3
 ```
 
-#### Languages
+##### Languages
 C++, Lua, Go, Julia, C#, PHP, C, Python, Common Lisp, Haskell, Ruby, Java, Rust, Swift,
 Bash, JavaScript, R, F#
 
-### 1: `C++`
+### 1: C++
 ```
 g++ ./day/1/main.cpp -o ./day/1/day1; ./day/1/day1
 ```
 1. 1873376
 2. 18997088
 
-### 2: `Lua`
+### 2: Lua
 ```
 lua ./day/2/main.lua
-
-part 1: 306
-part 2: 366
 ```
-### 3: `Go`
+1. 306
+2. 366
+
+### 3: Go
 ```
 go run ./day/3/main.go
-
-part 1: 165225049
-part 2: 108830766
 ```
-### 4: `Julia`
+1. 165225049
+2. 108830766
+### 4: Julia
 ```
 julia ./day/4/main.jl
-
-part 1: 2562
-part 2: 1902
 ```
+1. 2562
+2. 1902
 ### 5: `C#`
 ```
 dotnet run --project ./day/5
