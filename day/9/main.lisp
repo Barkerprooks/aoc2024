@@ -1,29 +1,41 @@
-(require "asdf")
+(require "asdf") ; only need this for read-file-string lol
 
-(defun load-file-map (filename)
-    ; unpacks the compressed string into an array of sectors / sizes
-    (let ((id 0) (files nil))
-        (loop :for i :from 0 :and n :across (uiop:read-file-string filename)
-            do (if (evenp i)
-                (progn
-                    (push (cons (write-to-string id) (digit-char-p n)) files)
-                    (setf id (+ id 1)))
-                (push (cons "." (digit-char-p n)) files)))
-        (make-array (length files) :initial-contents (reverse files))))
+(defclass file-entry ()
+    ((id :accessor file-entry-id :initarg :id)
+        (offset :accessor file-entry-offset
+            :initarg :offset)
+        (size :accessor file-entry-size
+            :initarg :size)))
 
-(defun dump-file-map (file-map-data)
-    ; takes the (sym, size) for each number and dumps it into its string representation
+(defun load-compressed (filename)
+    ; unpacks the compressed string into an array of file entries
+    (let ((id 0) (offset 0) (file-entries nil))
+        (loop :for i :from 0 :and value :across (uiop:read-file-string filename)
+            do (let ((n (digit-char-p value))) 
+                (if (evenp i) ; first, we need to push the correct file-entry into the list
+                    (progn
+                        (push (make-instance `file-entry :id (write-to-string id) :offset offset :size n) file-entries)
+                        (setf id (+ id 1)))
+                    (push (make-instance `file-entry :id "." :offset offset :size n) file-entries))
+                (loop :repeat n do (incf offset))))
+        ; export the list as an array going the correct direction
+        (make-array (length file-entries) :initial-contents (reverse file-entries))))
+
+(defun dump-file-entries (file-entries)
+    ; dumps into a string representation map
     (let ((file-map nil))
-        (loop :for data :across file-map-data
-            do (loop :repeat (cdr data) do (push (car data) file-map)))
+        (loop :for file-entry :across file-entries
+            do (loop :repeat (file-entry-size file-entry) 
+                do (push (file-entry-id file-entry) file-map)))
         (make-array (length file-map) :initial-contents (reverse file-map))))
 
 (defun checksum (file-map n) 
-    ; adds up all compressed numbers multiplied by their position
+    ; adds up all numbers multiplied by their position
     (apply '+ (loop :for block :across file-map :and i :from 0 :below (- (length file-map) n)
         :if (string= block ".") collect 0 :else collect (* i (parse-integer block)))))
 
 ; part 1 functions
+
 (defun free-blocks (file-map) 
     ; returns a list of indicies with free spots
     (loop :for i :from 0 :and file :across file-map :if (string= file ".") collect i))
@@ -55,17 +67,16 @@
             do (swap-blocks file-map freeblock (last-non-null file-map)))))
 
 ; part 2 functions
-(defun find-left-space (file-map n)
-    ; returns -1 if no spaces are found
-    (let ((empty 0))
-        (loop :for block :across file-map :and i :from 0 :finally (return -1)
-            do (if (string= block ".")
-                (setf empty (+ empty 1)) ; empty++
-                (if (> empty n) (return (- i empty)) ; return the needed index
-                    ; else reset the counter
-                    (setf empty 0))))))
 
-(defparameter *file-map-data* (load-file-map "./day/9/test.txt"))
-(print (find-left-space (dump-file-map *file-map-data*) 2)) ; testing
+(defun optimize-file-entries (file-entries)
+    ; the idea behind this is to:
+    ;  1st - go backwards through the entries, 
+    ;        find the leftmost empty space long enough to accomodate
+    ;        the current file id
+    ;  2nd - swap file entries:
+    ;        NOTE: IF the space is bigger than the file entry, create a new empty space
+    ;        behind the current position 
+    )
 
-; (format t "part 1: ~a~%" (optimize-file-map (dump-file-map *file-map-data*)))
+(defparameter *file-entries* (load-compressed "./day/9/test.txt"))
+(format t "part 1: ~a~%" (optimize-file-map (dump-file-entries *file-entries*)))
