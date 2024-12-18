@@ -43,6 +43,8 @@ case $1 in
         ruby ./day/11/main.rb;;
     12)
         java ./day/12/main.java;;
+    13)
+        rustc ./day/13/main.rs -o day13; ./day13; rm day13;;
     *)
         echo "command for day $1 not set up";;
 esac

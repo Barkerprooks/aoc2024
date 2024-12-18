@@ -82,8 +82,7 @@ part 2: 1005
 ### 9: `Lisp`
 ```
 sbcl --script ./day/9/main.lisp
-```
-```
+
 part 1: 6399153661894
 ```
 ### 10: `Haskell`
@@ -96,5 +95,25 @@ ruby ./day/11/main.rb
 ```
 ### 12: `Java`
 ```
-java ./day/12/Main.java
+java ./day/12/main.java
+```
+### 13: `Rust`
+```
+rustc ./day/13/main.rs; ./day13; rm day13
+```
+### 14. `Swift`
+```
+swift ./day/14/main.swift
+```
+### 15. `Bash`
+```
+bash ./day/15/main.bash
+```
+### 16. `JavaScript`
+```
+node ./day/16/main.js
+```
+### 17. `R`
+```
+R -s -f ./day/17/main.r
 ```
