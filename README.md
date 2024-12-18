@@ -5,7 +5,7 @@ Assuming you have the compiler/interpreter in your `$PATH`, you can run the sour
 
 You can also use the script `run-day.sh` to run a specific day on UNIX machines. 
 
-<small>NOTE: as of now this has only been tested in Arch Linux</small>
+*NOTE: as of now this has only been tested in Arch Linux*
 
 ```
 # mark the script as executable
@@ -71,7 +71,7 @@ python3 ./day/8/main.py
 sbcl --script ./day/9/main.lisp
 ```
 1. 6399153661894
-2. -
+2. ...
 ### 10: `Haskell`
 ```
 runghc ./day/10/main.hs
