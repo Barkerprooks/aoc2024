@@ -83,6 +83,9 @@ part 2: 1005
 ```
 sbcl --script ./day/9/main.lisp
 ```
+```
+part 1: 6399153661894
+```
 ### 10: `Haskell`
 ```
 runghc ./day/10/main.hs

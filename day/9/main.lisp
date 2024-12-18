@@ -26,22 +26,21 @@
         :when (string/= block ".")
             return i))
 
-(defparameter *file-map* (load-file-map "./day/9/test.txt"))
+(defun null-count (file-map) ; (count ...) does not work for some reason...
+    (apply `+ (loop :for block :across file-map :when (string= block ".") collect 1)))
 
-(loop :for block :across *file-map* 
-    do (format t "~a" block))
-(format t "~%")
+(defun is-space-optimized (file-map n) ; makes sure only blanks for the right side
+    (loop :repeat n :for block :across (reverse file-map)
+        :if (string/= block ".") return 0 :finally (return 1)))
 
-(format t "~a~%" (free-blocks *file-map*))
+(defun checksum (file-map n) ; adds up all compressed numbers multiplied by their position
+    (apply '+ (loop :for block :across file-map :and i :from 0 :below (- (length file-map) n)
+        :if (string= block ".") collect 0 :else collect (* i (parse-integer block)))))
 
-(loop :for freeblock :in (free-blocks *file-map*)
-    do (progn
-        (swap-blocks *file-map* freeblock (last-non-null *file-map*)))
-        (progn 
-            (loop :for block :across *file-map* 
-                do (format t "~a" block))
-            (format t "~%")))
+(defun optimize-file-map (file-map) ; main function
+    (let ((n (null-count file-map)))
+        (loop :for freeblock :in (free-blocks file-map)
+            :if (= (is-space-optimized file-map n) 1) return (checksum file-map n)
+            do (swap-blocks file-map freeblock (last-non-null file-map)))))
 
-(loop :for block :across *file-map* 
-    do (format t "~a" block))
-(format t "~%")
+(format t "part 1: ~a~%" (optimize-file-map (load-file-map "./day/9/input.txt")))
