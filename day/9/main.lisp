@@ -66,10 +66,15 @@
 ; part 2 functions
 
 (defun non-null-entries (file-entries)
-    ; gets the last file entry from the list of entries
-    (loop :for file-entry :across file-entries :and i :from 0
+    ; gets list of entries in reverse order
+    (loop :for file-entry :across (reverse file-entries)
         :if (string/= (file-entry-id file-entry) ".") 
-            collect i))
+            collect (file-entry-id file-entry)))
+
+(defun find-id (file-entries id)
+    (loop :for file-entry :across file-entries :and i :from 0
+        :if (string= (file-entry-id file-entry) id)
+            return i))
 
 (defun find-left-space (file-entries b)
     ; starts from the left and finds the first free entry that has enough space
@@ -86,8 +91,7 @@
         (concatenate `vector
             (subseq file-entries 0 (+ i size))
             (cons file-entry nil)
-            (subseq file-entries (+ i size)))
-            ))
+            (subseq file-entries (+ i size)))))
     
 
 (defun file-size-diff (file-entries a b)
@@ -95,18 +99,9 @@
     (- (file-entry-size (aref file-entries a)) (file-entry-size (aref file-entries b))))
 
 (defun swap-left-space (file-entries a b)
-    ; this should be taking an empty space as the left side
-    ; and a regular id as the right side.
-
-    ; right side size stays the same
-    ; if the left size is larger than the right side:
-    ;   add new empty file-entry w left - right size
-    ; left size gets set to right side
-    ; swap indicies
     (let ((size (file-size-diff file-entries a b)) (null-space (aref file-entries a)))
         (if (> size 0)
             (progn ; more than enough space
-                 ; insert new space aftser
                 (setf (file-entry-size null-space) (- (file-entry-size null-space) size))
                 (swap file-entries a b) ; swap
                 (setf file-entries (insert-new-space file-entries a size)))
@@ -114,27 +109,15 @@
     file-entries)
 
 (defun optimize-file-entries (file-entries)
-    ; the idea behind this is to:
-    ;  1st - go backwards through the non null entries, 
-    ;        find the leftmost empty space long enough to accomodate
-    ;        the current file id
-    ;  2nd - swap file entries:
-    ;        NOTE: IF the space is bigger than the file entry, create a new empty space
-    ;        behind the current position 
-    (loop :for b :in (reverse (non-null-entries file-entries)) 
-        do (let ((a (find-left-space file-entries b)))
+    (loop :for id :in (non-null-entries file-entries) 
+        do (let* ((b (find-id file-entries id)) (a (find-left-space file-entries b)))
                 (if (and (>= a 0) (>= b a))
-                    (setf file-entries (swap-left-space file-entries a b)))
-                (format t "a: ~a, b: ~a~%" a b))
-            (loop :for file-entry :across file-entries
-                do (format t "~a" (file-entry-id file-entry)))
-            (format t "~%")
-            (loop :for block :across (dump-file-entries file-entries) 
-                do (format t "~a" block))
-            (format t "~%")))
+                    (setf file-entries (swap-left-space file-entries a b)))))
+    (dump-file-entries file-entries))
 
-(defparameter *file-entries* (load-compressed "./day/9/test.txt"))
+(defparameter *file-entries* (load-compressed "./day/9/input.txt"))
 
-(optimize-file-entries *file-entries*)
+(let ((file-map (optimize-file-entries *file-entries*)))
+    (format t "~a~%" (checksum file-map 1)))
 
 ; (format t "part 1: ~a~%" (optimize-file-map (dump-file-entries *file-entries*)))

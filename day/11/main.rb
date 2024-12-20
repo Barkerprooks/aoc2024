@@ -1,4 +1,5 @@
-def blink(number)
+def hello()
+    1
+end
 
-    if number == '0'
-        return 
+x, y = hello()
