@@ -1,1 +1,4 @@
-puts('hello world')
+def blink(number)
+
+    if number == '0'
+        return 
