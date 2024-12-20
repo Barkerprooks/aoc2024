@@ -23,7 +23,7 @@ end
 
 def blink(stones)
     newstones = {}
-    stones.clone.each do | stone, n |
+    stones.each do | stone, n |
         a, b = transform(stone)
         newstones = set_stone(newstones, a, n)
         if b != nil
