@@ -115,9 +115,9 @@
                     (setf file-entries (swap-left-space file-entries a b)))))
     (dump-file-entries file-entries))
 
-(defparameter *file-entries* (load-compressed "./day/9/input.txt"))
+(defparameter *file-entries* (load-compressed "./day/9/test.txt"))
+
+(format t "part 1: ~a~%" (optimize-file-map (dump-file-entries *file-entries*)))
 
 (let ((file-map (optimize-file-entries *file-entries*)))
-    (format t "~a~%" (checksum file-map 1)))
-
-; (format t "part 1: ~a~%" (optimize-file-map (dump-file-entries *file-entries*)))
+    (format t "part 2: ~a~%" (checksum file-map 1)))

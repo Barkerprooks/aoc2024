@@ -80,6 +80,8 @@ runghc ./day/10/main.hs
 ```
 ruby ./day/11/main.rb
 ```
+1. 224529
+2. 266820198587914
 ### 12: Java
 ```
 java ./day/12/main.java
