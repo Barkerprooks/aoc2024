@@ -42,7 +42,7 @@ case $1 in
     11)
         ruby ./day/11/main.rb;;
     12)
-        java ./day/12/main.java;;
+        java ./day/12/Program.java;;
     13)
         rustc ./day/13/main.rs -o day13; ./day13; rm day13;;
     *)

@@ -84,7 +84,7 @@ ruby ./day/11/main.rb
 2. 266820198587914
 ### 12: Java
 ```
-java ./day/12/main.java
+java ./day/12/Program.java
 ```
 ### 13: Rust
 ```
