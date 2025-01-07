@@ -76,6 +76,7 @@ sbcl --script ./day/9/main.lisp
 ```
 runghc ./day/10/main.hs
 ```
+1. 789
 ### 11: Ruby
 ```
 ruby ./day/11/main.rb
@@ -90,6 +91,7 @@ java ./day/12/Program.java
 ```
 rustc ./day/13/main.rs -o ./day/13/day13; ./day/13/day13
 ```
+1. 26810
 ### 14. Swift
 ```
 swift ./day/14/main.swift

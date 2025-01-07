@@ -40,13 +40,12 @@ fn prize(a: V2, b: V2, t: V2) -> f64 {
 
         y += 1.0;
 
-        if y > 100000.0 {
-            println!("{}", x);
+        if y > 1000.0 {
             x += 1.0;
             y = 0.0;
         }
 
-        if x > 100000.0 {
+        if x > 1000.0 {
             break;
         }
 
@@ -71,7 +70,7 @@ fn parse_record_line(line: &str) -> V2 {
 }
 
 fn main() {
-    let text = fs::read_to_string("./day/13/test.txt")
+    let text = fs::read_to_string("./day/13/input.txt")
         .expect("could not open file");
 
     let data: Vec<&str> = text.split("\n\n").collect();
@@ -83,8 +82,8 @@ fn main() {
             .map(| line | parse_record_line(line))
             .collect::<Vec<V2>>()[..] else { continue };
 
-        let newt = V2 {x: t.x + 10000000000000.0, y: t.y + 10000000000000.0};
-        score += prize(a, b, newt);
+        //let newt = V2 {x: t.x + 10000000000000.0, y: t.y + 10000000000000.0};
+        score += prize(a, b, t);
     }
 
     println!("{}", score);
