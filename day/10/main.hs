@@ -25,7 +25,8 @@ findPaths m xy = do
     else concat (map (\cell -> findPaths m cell) (next m xy))
 
 findAllPaths :: [String] -> [(Int, Int)] -> [Int] -> [Int]
-findAllPaths m (xy:xs) paths = findAllPaths m xs paths ++ [(length (toList (fromList (findPaths m xy))))]
+findAllPaths m (xy:xs) paths = findAllPaths m xs paths ++ 
+    [(length (toList (fromList (findPaths m xy))))]
 findAllPaths m [] paths = paths
 
 main :: IO()
