@@ -1,9 +1,6 @@
 import Data.Char
 import Data.Set (toList, fromList)
 
-showTuple :: (Int, Int) -> String
-showTuple (x, y) = "(" ++ (show x) ++ ", " ++ (show y) ++ ")"
-
 startingCells :: [String] -> [(Int, Int)]
 startingCells m = [(x, y) | (y, r) <- zip [0..] m, (x, c) <- zip [0..] r, c == '0']
 

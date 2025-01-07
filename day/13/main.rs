@@ -48,7 +48,6 @@ fn prize(a: V2, b: V2, t: V2) -> f64 {
         if x > 1000.0 {
             break;
         }
-
     }
 
     0.0
