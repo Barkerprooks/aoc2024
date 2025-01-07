@@ -1,24 +1,58 @@
-use std::io::prelude::*;
+use std::fmt;
 use std::fs;
 
 #[derive(Copy, Clone)]
-struct V2 { x: u32, y: u32 }
+struct V2 { x: f64, y: f64 }
 
-fn prize(a: V2, b: V2, target: V2) -> V2 {
-    let mut score_a = V2 { x: 0, y: 0 };
-    let mut score_b = V2 { x: 0, y: 0 };
+impl V2 {
+    pub fn from_strings(x: &str, y: &str) -> Self {
+        V2 { 
+            x: x.parse().expect("could not parse x value into a float"), 
+            y: y.parse().expect("could not parse y value into a float")
+        }
+    }
+}
 
-    while (score_a.x < target.x && score_a.y < target.y) {
-        scoreA.x += a.x;
-        scoreA.y += a.y;
+impl fmt::Display for V2 {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
+    }
+}
+
+fn prize(a: V2, b: V2, t: V2) -> f64 {
+    let w = t.x + 1.0;
+    let target = t.x + w * t.y; // x + w * y => target x is max width
+    let step_a = a.x + w * a.y;
+    let step_b = b.x + w * b.y;
+
+    let mut x = 0.0;
+    let mut y = 0.0;
+
+    loop {
+        let p1 = x * step_a + y * step_b;
+        let p2 = y * step_a + x * step_b;
+
+        if p1 == target {
+            return (x * 3.0) + y;
+        } else if p2 == target {
+            return (y * 3.0) + x;
+        }
+
+        y += 1.0;
+
+        if y > 100000.0 {
+            println!("{}", x);
+            x += 1.0;
+            y = 0.0;
+        }
+
+        if x > 100000.0 {
+            break;
+        }
+
     }
 
-    while (score_b.x < target.x && score_b.y < target.y) {
-        scoreB.x += b.x;
-        scoreB.y += b.y;
-    }
-
-    score
+    0.0
 }
 
 fn parse_record_line(line: &str) -> V2 {
@@ -28,12 +62,12 @@ fn parse_record_line(line: &str) -> V2 {
     let comma: usize = line.chars().position(| character | character == ',')
         .expect("parse error: line missing comma");
 
-    let [x, y]: [&str; 2] = [ &line[colon + 4..comma].trim(), &line[comma + 4..].trim() ];
+    let [x, y]: [&str; 2] = [ 
+        &line[colon + 4..comma].trim(), 
+        &line[comma + 4..].trim() 
+    ];
 
-    V2 { 
-        x: x.parse().expect("could not parse x value into an integer"), 
-        y: y.parse().expect("could not parse y value into an integer")
-    }
+    V2::from_strings(x, y)
 }
 
 fn main() {
@@ -42,16 +76,16 @@ fn main() {
 
     let data: Vec<&str> = text.split("\n\n").collect();
 
+    let mut score: f64 = 0.0;
+
     for record in data {
-        let [a, b, target] = record.lines()
+        let [a, b, t] = record.lines()
             .map(| line | parse_record_line(line))
             .collect::<Vec<V2>>()[..] else { continue };
 
-        let score = prize(a, b, target);
-
-        println!("Ax: {}, Ay: {}", a.x, a.y);
-        println!("Bx: {}, By: {}", b.x, b.y);
-        println!("Gx: {}, Gy: {}", target.x, target.y);
-        println!("x: {}, y: {}\n", score.x, score.y)
+        let newt = V2 {x: t.x + 10000000000000.0, y: t.y + 10000000000000.0};
+        score += prize(a, b, newt);
     }
+
+    println!("{}", score);
 }
