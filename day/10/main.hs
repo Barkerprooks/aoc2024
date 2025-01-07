@@ -29,11 +29,19 @@ findAllPaths m (xy:xs) paths = findAllPaths m xs paths ++
     [(length (toList (fromList (findPaths m xy))))]
 findAllPaths m [] paths = paths
 
+findAllPathRatings :: [String] -> [(Int, Int)] -> [Int] -> [Int]
+findAllPathRatings m (xy:xs) paths = findAllPathRatings m xs paths ++
+    [(length (findPaths m xy))]
+findAllPathRatings m [] paths = paths
+
 main :: IO()
 main = do
     content <- readFile "./day/10/input.txt"
     let m = (lines content)
+    let s = (startingCells m)
 
-    let paths = findAllPaths m (startingCells m) []
-    
-    putStrLn ("part 1: " ++ (show (sum paths)))
+    let scores = findAllPaths m s []
+    let ratings = findAllPathRatings m s []
+
+    putStrLn ("part 1: " ++ (show (sum scores)))
+    putStrLn ("part 2: " ++ (show (sum ratings)))
