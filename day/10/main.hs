@@ -24,20 +24,22 @@ findPaths m xy = do
     if (getCell m xy) == '9' then [xy]
     else concat (map (\cell -> findPaths m cell) (next m xy))
 
-findAllPaths :: [String] -> [(Int, Int)] -> [Int] -> [Int]
-findAllPaths m (xy:xs) paths = findAllPaths m xs paths ++ 
-    [(length (toList (fromList (findPaths m xy))))]
-findAllPaths m [] paths = paths
-
+-- finds every path it can possibly take to each 9
 findAllPathRatings :: [String] -> [(Int, Int)] -> [Int] -> [Int]
 findAllPathRatings m (xy:xs) paths = findAllPathRatings m xs paths ++
     [(length (findPaths m xy))]
 findAllPathRatings m [] paths = paths
 
+-- same as above only the paths are filtered to be unique so each 9 is only recorded once
+findAllPaths :: [String] -> [(Int, Int)] -> [Int] -> [Int]
+findAllPaths m (xy:xs) paths = findAllPaths m xs paths ++ 
+    [(length (toList (fromList (findPaths m xy))))]
+findAllPaths m [] paths = paths
+
 main :: IO()
 main = do
-    content <- readFile "./day/10/input.txt"
-    let m = (lines content)
+    text <- readFile "./day/10/input.txt"
+    let m = (lines text)
     let s = (startingCells m)
 
     let scores = findAllPaths m s []
