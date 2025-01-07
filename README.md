@@ -77,6 +77,7 @@ sbcl --script ./day/9/main.lisp
 runghc ./day/10/main.hs
 ```
 1. 789
+2. 1735
 ### 11: Ruby
 ```
 ruby ./day/11/main.rb
